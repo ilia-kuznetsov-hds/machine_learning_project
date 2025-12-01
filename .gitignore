@@ -1,1 +1,9 @@
-Project_2_description.pdf
+*.csv
+*.env
+*.pem
+*.key
+secrets.*
+config.yaml
+*.sqlite
+credentials/
+*.venv
