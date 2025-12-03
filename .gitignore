@@ -7,3 +7,5 @@ config.yaml
 *.sqlite
 credentials/
 *.venv
+data/
+YandexPracticumDataAnalyst/
