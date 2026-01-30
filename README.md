@@ -7,6 +7,6 @@ with a focus on **healthcare**.
 
 | Area | Project | Description | Key Skills | Notebook |
 |-----|-------|------------|-----------|---------|
-| Clinical NLP | Prompt Engineering for Clinical Coding | LLM prompt design for medical text | NLP, LLMs, Healthcare | [Open](notebooks/clinical_nlp/prompt_engineering_clinical_coding.ipynb) |
-| ML Fundamentals | PyTorch Tensors & Regression | Core tensor ops and regression | PyTorch| [Open](notebooks/fundamentals/pytorch_tensors_linear_regression.ipynb) |
-| Business Analytics | Telecom Revenue Analysis | Customer usage patterns and tariff profitability analysis | Pandas, Statistical Analysis, Business Intelligence | [Open](notebooks/business_analytics/2025-12_telecom_plans_analysis.ipynb) |
+| Clinical NLP | Prompt Engineering for Clinical Coding | LLM prompt design for medical text | NLP, LLMs, Healthcare | [Open](https://github.com/ilia-kuznetsov-hds/machine_learning_project/blob/main/notebooks/clinical_nlp/2025-11%20Prompt%20Engineering%20For%20Clinical%20Coding.ipynb) |
+| ML Fundamentals | PyTorch Tensors & Regression | Core tensor ops and regression | PyTorch| [Open](https://github.com/ilia-kuznetsov-hds/machine_learning_project/blob/main/notebooks/fundamentals/2025-09%20PyTorch_Fundamentals_Tensors_and_Linear_Regression.ipynb) |
+| Business Analytics | Telecom Revenue Analysis | Customer usage patterns and tariff profitability analysis | Pandas, Statistical Analysis, Business Intelligence | [Open](https://github.com/ilia-kuznetsov-hds/machine_learning_project/blob/main/notebooks/business_analytics/2025-12%20Telecom%20Plans%20Analysis.ipynb) |
