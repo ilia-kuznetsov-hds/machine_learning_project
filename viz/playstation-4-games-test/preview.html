@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PS4 Games Test Visualization</title>
+  <style>
+    :root {
+      --page: #efe7d8;
+      --surface: rgba(255, 251, 244, 0.92);
+      --ink: #1b2026;
+      --muted: #5a6672;
+      --accent: #0b5fff;
+      --border: rgba(27, 32, 38, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(11, 95, 255, 0.18), transparent 24rem),
+        linear-gradient(180deg, #f7f0e4 0%, var(--page) 100%);
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px 26px 22px;
+      box-shadow: 0 16px 36px rgba(27, 32, 38, 0.08);
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 16ch;
+      font: 700 clamp(2rem, 4vw, 4rem)/0.95 Georgia, "Times New Roman", serif;
+    }
+
+    .summary {
+      max-width: 60rem;
+      margin: 14px 0 0;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .frame {
+      margin-top: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(27, 32, 38, 0.08);
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      min-height: 640px;
+      border: 0;
+      background: transparent;
+    }
+
+    .notes {
+      display: grid;
+      gap: 10px;
+      padding: 18px 26px 24px;
+      font-size: 0.97rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .notes strong {
+      color: var(--ink);
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 14px 10px 20px;
+      }
+
+      .intro,
+      .frame {
+        border-radius: 18px;
+      }
+
+      .intro,
+      .notes {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      iframe {
+        min-height: 580px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="intro">
+      <p class="kicker">Storytelling Viz Skill Test</p>
+      <h1>The PS4 release list builds toward a late-cycle high</h1>
+      <p class="summary">
+        This is a deliberately small first-pass artifact: one bar chart, one clear pattern, and just enough framing to test the skill flow.
+        Within the source file, the yearly count of listed PS4 games rises sharply after launch-era years and reaches its highest point in 2021.
+      </p>
+    </section>
+
+    <section class="frame">
+      <iframe id="viz-frame" src="./index.html" title="PS4 releases by year"></iframe>
+      <div class="notes">
+        <div><strong>Insight 1:</strong> The source file shows a persistent year-over-year expansion from 2013 through 2021.</div>
+        <div><strong>Insight 2:</strong> Most of the catalog volume in this file sits in the later years, especially 2020 and 2021.</div>
+        <div><strong>Caveat:</strong> Sparse entries before 2013 and in 2022 were excluded to keep the chart focused on the main PS4 lifecycle visible in the dataset.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener("message", (event) => {
+      if (!event.data || event.data.type !== "viz-height") return;
+      const iframe = document.getElementById("viz-frame");
+      iframe.style.height = `${Math.max(520, event.data.height)}px`;
+    });
+  </script>
+</body>
+</html>

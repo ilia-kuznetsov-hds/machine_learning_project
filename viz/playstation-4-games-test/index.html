@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PS4 Releases by Year</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --panel: #fbf8f2;
+      --ink: #1d2329;
+      --muted: #5c6773;
+      --accent: #0b5fff;
+      --grid: rgba(29, 35, 41, 0.12);
+      --border: rgba(29, 35, 41, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(11, 95, 255, 0.14), transparent 28rem),
+        linear-gradient(180deg, #f7f4ee 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 20px;
+    }
+
+    .panel {
+      background: rgba(251, 248, 242, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(29, 35, 41, 0.08);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 24px 24px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font: 600 0.82rem/1.2 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.02;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      max-width: 56rem;
+      margin: 12px 0 0;
+      font: 400 1rem/1.55 Arial, Helvetica, sans-serif;
+      color: var(--muted);
+    }
+
+    #chart {
+      width: 100%;
+      height: 520px;
+    }
+
+    .footer {
+      display: grid;
+      gap: 12px;
+      padding: 0 24px 24px;
+      font: 400 0.95rem/1.5 Arial, Helvetica, sans-serif;
+      color: var(--muted);
+    }
+
+    .footer strong {
+      color: var(--ink);
+    }
+
+    .footer a {
+      color: var(--accent);
+    }
+
+    @media (max-width: 720px) {
+      .wrap {
+        padding: 14px 10px 14px;
+      }
+
+      .panel {
+        border-radius: 18px;
+      }
+
+      .header,
+      .footer {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      #chart {
+        height: 460px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="panel">
+      <div class="header">
+        <p class="eyebrow">PlayStation 4 Catalog</p>
+        <h1>PS4 releases accelerate late in the console cycle</h1>
+        <p class="subtitle">
+          This local smoke test counts games by release year and focuses on the main 2013-2021 lifecycle.
+          A few earlier and later rows exist in the source file, but they are sparse enough to read as edge-case records rather than the core catalog trend.
+        </p>
+      </div>
+      <div id="chart" aria-label="Bar chart of PlayStation 4 game releases by year"></div>
+      <div class="footer">
+        <div><strong>Read without hover:</strong> the visible pattern is a steady climb from 56 listed releases in 2013 to 1,793 in 2021.</div>
+        <div><strong>Source:</strong> Yandex bootcamp dataset, <a href="../../data/playstation_4_games.csv">playstation_4_games.csv</a>.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const series = [
+      { year: 2013, count: 56 },
+      { year: 2014, count: 246 },
+      { year: 2015, count: 477 },
+      { year: 2016, count: 842 },
+      { year: 2017, count: 1130 },
+      { year: 2018, count: 1314 },
+      { year: 2019, count: 1404 },
+      { year: 2020, count: 1683 },
+      { year: 2021, count: 1793 }
+    ];
+
+    const x = series.map((d) => d.year);
+    const y = series.map((d) => d.count);
+    const colors = series.map((d, idx) => idx === series.length - 1 ? "#0b5fff" : "#8eb6ff");
+
+    const trace = {
+      type: "bar",
+      x,
+      y,
+      marker: {
+        color: colors,
+        line: {
+          color: "#0f3d99",
+          width: 0
+        }
+      },
+      text: y.map((value) => value.toLocaleString()),
+      textposition: "outside",
+      cliponaxis: false,
+      hovertemplate: "<b>%{x}</b><br>%{y:,} games<extra></extra>"
+    };
+
+    const layout = {
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      margin: { l: 56, r: 28, t: 24, b: 54 },
+      showlegend: false,
+      bargap: 0.24,
+      xaxis: {
+        tickmode: "array",
+        tickvals: x,
+        tickfont: { family: "Arial, Helvetica, sans-serif", size: 12, color: "#334150" },
+        linecolor: "rgba(29, 35, 41, 0.18)",
+        mirror: false,
+        fixedrange: true
+      },
+      yaxis: {
+        title: { text: "Listed games", font: { family: "Arial, Helvetica, sans-serif", size: 13, color: "#334150" } },
+        gridcolor: "rgba(29, 35, 41, 0.12)",
+        zeroline: false,
+        rangemode: "tozero",
+        tickfont: { family: "Arial, Helvetica, sans-serif", size: 12, color: "#334150" },
+        fixedrange: true
+      },
+      annotations: [
+        {
+          x: 2021,
+          y: 1793,
+          text: "Highest count in this file",
+          showarrow: true,
+          arrowhead: 0,
+          arrowsize: 0.8,
+          ax: -42,
+          ay: -34,
+          bgcolor: "rgba(251, 248, 242, 0.92)",
+          bordercolor: "rgba(29, 35, 41, 0.12)",
+          font: { family: "Arial, Helvetica, sans-serif", size: 12, color: "#1d2329" }
+        }
+      ]
+    };
+
+    const config = {
+      displayModeBar: false,
+      responsive: true
+    };
+
+    function reportHeight() {
+      const panel = document.querySelector(".panel");
+      if (!panel) return;
+      const height = Math.ceil(panel.getBoundingClientRect().height + 8);
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: "viz-height", height }, "*");
+      }
+    }
+
+    Plotly.newPlot("chart", [trace], layout, config).then(() => {
+      reportHeight();
+      if (window.ResizeObserver) {
+        const observer = new ResizeObserver(() => reportHeight());
+        observer.observe(document.querySelector(".panel"));
+      } else {
+        window.addEventListener("resize", reportHeight);
+      }
+    });
+  </script>
+</body>
+</html>
