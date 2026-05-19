@@ -1,6 +1,6 @@
 # Revenue Analysis Across Mobile Plans for a Telecom Operator
 
-## 📊 Project Overview
+## Project Overview
 
 **Business Context**: A federal mobile network operator seeks to optimize advertising budget allocation by analyzing customer usage patterns and determining which tariff plan generates higher revenue.
 
@@ -8,8 +8,14 @@
 
 **Key Business Question**: Which tariff plan (Smart vs Ultra) is more profitable for the operator?
 
+## Related Notebooks
 
-## 📁 Data Sources
+| Notebook | Description | Link |
+|---|---|---|
+| Telecom Project 01 EDA | Initial exploratory data analysis of users, calls, messages, internet usage, and tariffs. | [Open](./2026-05%20Telecom%20Project%2001%20EDA.ipynb) |
+| Telecom Project 02 Plans Analysis | Full revenue analysis comparing Smart and Ultra plans, including overage logic and profitability conclusions. | [Open](./2025-12%20Telecom%20Plans%20Analysis.ipynb) |
+
+## Data Sources
 
 | Dataset | Records | Description |
 |---------|---------|-------------|
@@ -19,7 +25,7 @@
 | `internet.csv` | ~80k | Internet usage sessions with data consumption |
 | `tariffs.csv` | 2 | Tariff plan details and pricing structure |
 
-## 📝 Notes & Assumptions
+## Notes And Assumptions
 
 **Business Rules Applied:**
 - Call duration rounded up to nearest minute (company policy)
@@ -34,4 +40,5 @@
 **Analytical Limitations:**
 - Cost data not available (network costs, customer acquisition costs)
 - External factors not considered (competition, market conditions)
-- Sample size limited to 500 users 
+- Sample size limited to 500 users
+
